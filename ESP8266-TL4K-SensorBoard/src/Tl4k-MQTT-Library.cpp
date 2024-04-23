@@ -3,8 +3,10 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 
+WiFiClient espClient;
+PubSubClient client(espClient);
 
-extern PubSubClient client;
+// extern PubSubClient client;
 
 void mqttBrokerLoop(){
     client.loop();
@@ -56,8 +58,9 @@ void connettiAlBrokerMqtt(){
 
 void connectToMqttBroker()
 {
+  //client.setServer(MQTT_BROKER, MQTT_BROKER_PORT);
   client.setServer(MQTT_BROKER, MQTT_BROKER_PORT);
-  //checkMqttBrokerConnectionAndReconnectIfRequired();
+  checkMqttBrokerConnectionAndReconnectIfRequired();
 }
 
 String getDeviceMqttClientName()

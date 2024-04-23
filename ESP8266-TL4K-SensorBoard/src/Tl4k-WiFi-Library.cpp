@@ -12,16 +12,21 @@ void impostaLaConnessioneWiFi(){
 
 void initWiFi()
 {
+
+  WiFiManagerParameter custom_mqtt_server_name("mqtt_server_name", "mqtt server name", "localhost", 40);
+  wifiManager.addParameter(&custom_mqtt_server_name);
+  WiFiManagerParameter custom_mqtt_server_port("mqtt_server_port", "mqtt server port", "1883", 6);
+  wifiManager.addParameter(&custom_mqtt_server_port);
   
   // WiFi.begin(WIFI_AP_NAME, WIFI_PASSWORD);
-  Serial.println("Connecting to AP ...");
-  wifiManager.autoConnect("WIFI_AP_NAME", "WIFI_PASSWORD");  
+  Serial.println("Connessione all'Access Point...");
+  wifiManager.autoConnect(WIFI_AP_NAME, WIFI_PASSWORD);  
 //  while (WiFi.status() != WL_CONNECTED)
 //  {
 //    delay(500);
 //    Serial.print(".");
 //  }
-  Serial.println("Connected to AP");
+  // Serial.println("Connected to AP");
   //Serial.print("\nLocal ip address is ");
   //Serial.println(WiFi.localIP());
   Serial.println();
@@ -32,7 +37,7 @@ void reconnectWifi()
 {
   // Loop until we're reconnected
   status = WiFi.status();
-  Serial.println("Trying to Re-connect to AP");
+  Serial.println("Tentativo di riconnessione all'Access Point in corso");
   if (status != WL_CONNECTED)
   {
     WiFi.begin(WIFI_AP_NAME, WIFI_PASSWORD);
@@ -41,9 +46,9 @@ void reconnectWifi()
       delay(500);
       Serial.print(".");
     }
-    Serial.println("Connected to AP");
+    Serial.println("Connessione completata!");
 
-    Serial.print("\nLocal ip address is ");
+    Serial.print("\nL'indirizzo IP locale è ");
     Serial.println(WiFi.localIP());
     Serial.println();
 
