@@ -3,7 +3,6 @@
 #include "Tl4k-WiFi-Library.h"
 #include "Tl4k-MQTT-Library.h"
 
-
 void setup() {
   Serial.begin(115200);
 
@@ -19,8 +18,6 @@ void setup() {
 }
 
 void loop() {
-
-  
 
   // verificaSeConnessoEtRiconnettiSeNecessario();
 
@@ -38,11 +35,11 @@ void loop() {
 
   // inviaDatiAlBrokerMqtt(dati);
 
-   long distanza = leggiLaDistanza();
+  //  long distanza = leggiLaDistanza();
 
    
-   impostaStrisciaLed(distanza);
-   
+  //  impostaStrisciaLed(distanza);
+   client.loop();
    delay(250);
 
   //faiLampeggiareIlLed();

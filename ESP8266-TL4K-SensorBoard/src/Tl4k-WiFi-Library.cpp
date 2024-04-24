@@ -20,7 +20,18 @@ void initWiFi()
   
   // WiFi.begin(WIFI_AP_NAME, WIFI_PASSWORD);
   Serial.println("Connessione all'Access Point...");
-  wifiManager.autoConnect(WIFI_AP_NAME, WIFI_PASSWORD);  
+  // wifiManager.autoConnect(WIFI_AP_NAME, WIFI_PASSWORD);  
+  
+  if (!wifiManager.autoConnect(WIFI_AP_NAME, WIFI_PASSWORD)) {
+    Serial.println("Tentativo di connessione fallito");
+    delay(3000);
+    //reset and try again, or maybe put it to deep sleep
+    Serial.println("Reset...");
+    ESP.reset();
+    delay(5000);
+    Serial.println("Post reset");
+  }
+
 //  while (WiFi.status() != WL_CONNECTED)
 //  {
 //    delay(500);

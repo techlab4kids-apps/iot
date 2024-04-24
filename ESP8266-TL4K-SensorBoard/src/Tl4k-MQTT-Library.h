@@ -3,7 +3,8 @@
 
 #include "Tl4k-ESP8266-Library.h"
 #include "Tl4k-WiFi-Library.h"
-#include <PubSubClient.h>
+
+#include "EspMQTTClient.h"
 #include <ArduinoJson.h>
 
 // Mqtt parameters
@@ -14,13 +15,16 @@
 
 
 //#define MQTT_BROKER "test.mosquitto.org"
-#define MQTT_BROKER "192.168.0.107"
+#define MQTT_BROKER "192.168.0.105"
 #define MQTT_BROKER_PORT 1883
-#define MQTT_BROKER_USER ""
-#define MQTT_BROKER_PASSWORD ""
+#define MQTT_BROKER_USER "no_name"
+#define MQTT_BROKER_PASSWORD "no_password"
 
 #define MQTT_DEVICE_TELEMETRY_TOPIC "tl4k/devices/CLIENT_NAME/data";
 #define MQTT_DEVICE_COMMAND_TOPIC "tl4k/devices/CLIENT_NAME/command";
+
+
+extern EspMQTTClient client;
 
 void mqttBrokerLoop();
 
@@ -33,6 +37,7 @@ void sendDataToMqttBroker(Dati &data);
 
 // The callback for when a PUBLISH message is received from the server.
 void on_message(const char *topic, byte *payload, unsigned int length);
+void onConnectionEstablished();
 
 void reconnect(String clientName);
 void controllaLaConnessioneAlBrokerEtRiconnettiSeNecessario();
