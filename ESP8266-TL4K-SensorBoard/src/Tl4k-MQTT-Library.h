@@ -14,7 +14,7 @@
 
 
 //#define MQTT_BROKER "test.mosquitto.org"
-#define MQTT_BROKER "192.168.0.107"
+#define MQTT_BROKER "192.168.0.111"
 #define MQTT_BROKER_PORT 1883
 #define MQTT_BROKER_USER ""
 #define MQTT_BROKER_PASSWORD ""
