@@ -20,12 +20,10 @@ void setup() {
 
 void loop() {
 
-  
-
   // verificaSeConnessoEtRiconnettiSeNecessario();
 
-  stampaUnTestoSuUnaRigaDelMonitorSeriale("####################################");
-  stampaUnaRigaVuotaSulMonitorSeriale();
+  // stampaUnTestoSuUnaRigaDelMonitorSeriale("####################################");
+  // stampaUnaRigaVuotaSulMonitorSeriale();
   
   Dati dati;
   leggiDati(dati);
@@ -38,11 +36,11 @@ void loop() {
 
   // inviaDatiAlBrokerMqtt(dati);
 
-   long distanza = leggiLaDistanza();
+  //  long distanza = leggiLaDistanza();
 
    
-   impostaStrisciaLed(distanza);
-   
+  //  impostaStrisciaLed(distanza);
+   mqttBrokerLoop();
    delay(250);
 
   //faiLampeggiareIlLed();

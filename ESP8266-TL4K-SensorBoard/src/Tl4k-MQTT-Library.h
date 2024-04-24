@@ -2,6 +2,7 @@
 #define _mqttBrokerConfiguration_
 
 #include "Tl4k-ESP8266-Library.h"
+#include "Tl4k-LedStick-Library.h"
 #include "Tl4k-WiFi-Library.h"
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
@@ -14,7 +15,7 @@
 
 
 //#define MQTT_BROKER "test.mosquitto.org"
-#define MQTT_BROKER "192.168.0.111"
+#define MQTT_BROKER "192.168.0.107"
 #define MQTT_BROKER_PORT 1883
 #define MQTT_BROKER_USER ""
 #define MQTT_BROKER_PASSWORD ""

@@ -103,7 +103,6 @@ void sendDataToMqttBroker(Dati &data)
 //  payload += agruminoData.temperature;
   payload += ",";
 
-
   payload += "}";
 
   Serial.println("Payload: " + payload);
@@ -146,7 +145,7 @@ void on_message(const char *topic, byte *payload, unsigned int length)
   // name: command name
   // max 5 parameters: {parameter1: parameter1Value, parameter2: parameter2Value, ...}
 
-  const int capacity = JSON_OBJECT_SIZE(1) + 5*JSON_OBJECT_SIZE(1);
+  const int capacity = JSON_OBJECT_SIZE(1) + 6*JSON_OBJECT_SIZE(1);
   StaticJsonDocument<capacity> commandDoc;
   DeserializationError err = deserializeJson(commandDoc, payloadString);
 
@@ -155,62 +154,72 @@ void on_message(const char *topic, byte *payload, unsigned int length)
     Serial.println(err.c_str());
   }
 
-  const char* commandChars = commandDoc["name"];
+  const char* commandChars = commandDoc["comando"];
   String command = String(commandChars);
   Serial.print("Received command: ");
   Serial.println(command.c_str());
 
   if (command.equals("show"))
   {
-    Dati data;
-
-    getData(data);
-
-    sendDataToMqttBroker(data);
+    Serial.println ("Command: show");
+    strip.show();
   }
   else if (command.equals("color"))
   {
-    int status = commandDoc["parameters.red"]["value"];
-    int status = commandDoc["parameters.green"]["value"];
-    int status = commandDoc["parameters.blue"]["value"];
-    int status = commandDoc["parameters.white"]["value"];
-    Serial.print("Define color: ");
-    Serial.println(status);
+    Serial.println ("Command: color");
+    int red = commandDoc["parametri"]["red"];
+    int green = commandDoc["parametri"]["green"];
+    int blue = commandDoc["parametri"]["blue"];
+    int white = commandDoc["parametri"]["white"];
+    Serial.println("Color: red " + String(red) + " blue " + String(blue) + " green "+ String(green));
     // setLedStatus(status);
   }
   else if (command.equals("setPixelColor"))
   {
-    int status = commandDoc["parameters.red"]["value"];
-    int status = commandDoc["parameters.green"]["value"];
-    int status = commandDoc["parameters.blue"]["value"];
-    int status = commandDoc["parameters.white"]["value"];
-    toggleLed();
-    Dati data;
-
-    Serial.println("Updating led color");
-    getData(data);
-
-    sendDataToMqttBroker(data);
+    Serial.println ("Command: setPixelColor");
+    int indice = commandDoc["parametri"]["indice"];
+    int red = commandDoc["parametri"]["red"];
+    int green = commandDoc["parametri"]["green"];
+    int blue = commandDoc["parametri"]["blue"];
+    int white = commandDoc["parametri"]["white"];
+    Serial.println("Indice: " + String(indice) + " Color: red " + String(red) + " blue " + String(blue) + " green "+ String(green));
+    strip.setPixelColor(indice, red, green, blue);
   }
   else if (command.equals("setBrightness"))
   {
-    int status = commandDoc["parameters.luminosita"]["value"];
-    toggleLed();
-    Dati data;
-
-    Serial.println("Setting Brightness");
-    getData(data);
-
-    sendDataToMqttBroker(data);
+    Serial.println ("Command: setBrightness");
+    int luminosita = commandDoc["parametri"]["luminosita"];
+    
+    Serial.println("Brightness: " + String(luminosita));
+    strip.setBrightness(luminosita);
   }
   else if (command.equals("clear"))
   {
-    toggleLed();
-    Dati data;
-
-    Serial.println("Turn off all led");
-    getData(data);
-
-    sendDataToMqttBroker(data);
+    Serial.println ("Command: clear");
+    strip.clear();
+  }
+   else if (command.equals("colorWipe"))
+  {
+    Serial.println ("Command: colorWipe");
+    int red = commandDoc["parametri"]["red"];
+    int green = commandDoc["parametri"]["green"];
+    int blue = commandDoc["parametri"]["blue"];
+    Serial.println(" Color: red " + String(red) + " blue " + String(blue) + " green "+ String(green));
+    int attesa = commandDoc["parametri"]["attesa"];
+    uint32_t color = strip.Color(red, green, blue);
+    colorWipe(color, attesa);
+  }
+  else if (command.equals("knightRider"))
+  {
+    Serial.println ("Command: knightRider");
+    int red = commandDoc["parametri"]["red"];
+    int green = commandDoc["parametri"]["green"];
+    int blue = commandDoc["parametri"]["blue"];
+    Serial.println(" Color: red " + String(red) + " blue " + String(blue) + " green "+ String(green));
+    uint32_t color = strip.Color(red, green, blue);
+    int ripetizioni = commandDoc["parametri"]["ripetizioni"];
+    int attesa = commandDoc["parametri"]["attesa"];
+    int lunghezza = commandDoc["parametri"]["lunghezza"];
+    knightRider(color, ripetizioni, attesa, lunghezza);
   }
 }
