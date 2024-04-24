@@ -160,7 +160,7 @@ void on_message(const char *topic, byte *payload, unsigned int length)
   Serial.print("Received command: ");
   Serial.println(command.c_str());
 
-  if (command.equals("getLedStatus"))
+  if (command.equals("show"))
   {
     Dati data;
 
@@ -168,19 +168,47 @@ void on_message(const char *topic, byte *payload, unsigned int length)
 
     sendDataToMqttBroker(data);
   }
-  else if (command.equals("setLedStatus"))
+  else if (command.equals("color"))
   {
-    bool status = commandDoc["parameters"]["value"];
-    Serial.print("New led status: ");
+    int status = commandDoc["parameters.red"]["value"];
+    int status = commandDoc["parameters.green"]["value"];
+    int status = commandDoc["parameters.blue"]["value"];
+    int status = commandDoc["parameters.white"]["value"];
+    Serial.print("Define color: ");
     Serial.println(status);
-    setLedStatus(status);
+    // setLedStatus(status);
   }
-  else if (command.equals("toggleLed"))
+  else if (command.equals("setPixelColor"))
+  {
+    int status = commandDoc["parameters.red"]["value"];
+    int status = commandDoc["parameters.green"]["value"];
+    int status = commandDoc["parameters.blue"]["value"];
+    int status = commandDoc["parameters.white"]["value"];
+    toggleLed();
+    Dati data;
+
+    Serial.println("Updating led color");
+    getData(data);
+
+    sendDataToMqttBroker(data);
+  }
+  else if (command.equals("setBrightness"))
+  {
+    int status = commandDoc["parameters.luminosita"]["value"];
+    toggleLed();
+    Dati data;
+
+    Serial.println("Setting Brightness");
+    getData(data);
+
+    sendDataToMqttBroker(data);
+  }
+  else if (command.equals("clear"))
   {
     toggleLed();
     Dati data;
 
-    Serial.println("Updating led status data");
+    Serial.println("Turn off all led");
     getData(data);
 
     sendDataToMqttBroker(data);
