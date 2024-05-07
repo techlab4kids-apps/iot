@@ -99,9 +99,9 @@ void sendDataToMqttBroker(Dati &data)
 {
   // Prepare a JSON payload string
   String payload = "{";
-//  payload += "\"temperatura\":";
-//  payload += agruminoData.temperature;
-  payload += ",";
+  payload += "\"distanza\":";
+  payload += data.distanza;
+  // payload += ",";
 
   payload += "}";
 

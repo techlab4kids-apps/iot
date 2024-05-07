@@ -1,5 +1,5 @@
 
-#include "Tl4k-LEDSTICK-Library.h"
+#include "Tl4k-LedStick-Library.h"
 
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMPIXELS, D6, NEO_GRB + NEO_KHZ800);
@@ -20,7 +20,7 @@ void setStrisciaLed(int value){
 //    delay(100); // Delay for a period of time (in milliseconds).
 //
 //  }
-  
+
   for(int i = 0; i < NUMPIXELS; i++) {
     if (value > 10) {
       strip.setPixelColor(i, strip.Color(0, 255, 0)); // All LEDs green
@@ -165,9 +165,9 @@ void rainbowFade2White(int wait, int rainbowLoops, int whiteLoops) {
 void knightRider(uint32_t color, int times, int wait, int barLength) {
 
   strip.show();            // Turn OFF all pixels ASAP
-  strip.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)  
+  strip.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
   uint32_t off = (0, 0, 0);
-  
+
   int i=0;
   int j=0;
   int k=0;
@@ -181,7 +181,7 @@ void knightRider(uint32_t color, int times, int wait, int barLength) {
        strip.setPixelColor(j, off);         //  Set Bar Pixel 1 to 0 (in RAM)
        strip.setPixelColor(j+barLength, color);         //  Set next Bar pixel to color (in RAM)
        strip.show();                          //  Update strip to match
-       delay(wait); 
+       delay(wait);
       }
       for(int k=strip.numPixels(); k>strip.numPixels()-barLength; k--) {
        strip.setPixelColor(k, color);         //  Set pixel's color (in RAM)
@@ -192,7 +192,7 @@ void knightRider(uint32_t color, int times, int wait, int barLength) {
        strip.setPixelColor(j, off);         //  Set Bar Pixel 1 to 0 (in RAM)
        strip.setPixelColor(j-barLength, color);         //  Set next Bar pixel to color (in RAM)
        strip.show();                          //  Update strip to match
-       delay(wait); 
+       delay(wait);
        }
       strip.setPixelColor(0, off);
       strip.show();                          //  Update strip to match

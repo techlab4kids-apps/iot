@@ -18,15 +18,7 @@
 
 typedef struct Data_t
 {
-  float temperature;
-  unsigned int soilMoisture;
-  float illuminance;
-  float batteryVoltage;
-  unsigned int batteryLevel;
-  bool isAttachedToUSB;
-  bool isBatteryCharging;
-  bool isLedOn;
-  String ledColor;
+  float distanza;
 } Dati;
 
 void configuraSchedaEtSensori();

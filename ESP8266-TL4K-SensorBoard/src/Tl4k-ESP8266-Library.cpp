@@ -46,7 +46,7 @@ bool isLedOn(){
 
 void getData(Dati &data)
 {
-  data.isLedOn = isLedOn();
+  data.distanza = leggiLaDistanza();
 }
 
 void printData(Dati &data)
@@ -56,10 +56,6 @@ void printData(Dati &data)
 
   // Serial.println("led acceso:           " + isLedOn(agruminoData));
   Serial.println();
-}
-
-String isLedOn(Dati &data){
-  return booleanToString(data.isLedOn, "si", "no");
 }
 
 String booleanToString(boolean value, String trueValue, String falseValue){
