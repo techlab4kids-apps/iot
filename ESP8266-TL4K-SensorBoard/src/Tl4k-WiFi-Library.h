@@ -4,8 +4,9 @@
 #include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager WiFi Configuration Magic
 
 // Nome della rete WiFi(SID)
-#define WIFI_AP_NAME "TL4K-4G-NET"
+// #define WIFI_AP_NAME "TL4K-4G-NET"
 //#define WIFI_AP_NAME "procioniopossum"
+#define WIFI_AP_NAME "tl4k-net"
 
 // WiFi password
 // #define WIFI_PASSWORD "12344321"

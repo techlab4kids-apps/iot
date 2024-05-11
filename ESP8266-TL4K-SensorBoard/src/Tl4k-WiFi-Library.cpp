@@ -10,6 +10,13 @@ void impostaLaConnessioneWiFi(){
    initWiFi();
 }
 
+void configModeCallback (WiFiManager *myWiFiManager) {
+  Serial.println("Entered config mode");
+  Serial.println(WiFi.softAPIP());
+
+  Serial.println(myWiFiManager->getConfigPortalSSID());
+}
+
 void initWiFi()
 {
 
@@ -17,10 +24,13 @@ void initWiFi()
   wifiManager.addParameter(&custom_mqtt_server_name);
   WiFiManagerParameter custom_mqtt_server_port("mqtt_server_port", "mqtt server port", "1883", 6);
   wifiManager.addParameter(&custom_mqtt_server_port);
+
+  wifiManager.setAPCallback(configModeCallback);
   
   // WiFi.begin(WIFI_AP_NAME, WIFI_PASSWORD);
   Serial.println("Connessione all'Access Point...");
-  wifiManager.autoConnect(WIFI_AP_NAME, WIFI_PASSWORD);  
+  // wifiManager.autoConnect(WIFI_AP_NAME, WIFI_PASSWORD);
+  wifiManager.autoConnect();  
 //  while (WiFi.status() != WL_CONNECTED)
 //  {
 //    delay(500);

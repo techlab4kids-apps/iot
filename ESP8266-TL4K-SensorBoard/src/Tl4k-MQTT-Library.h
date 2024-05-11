@@ -15,7 +15,7 @@
 
 
 //#define MQTT_BROKER "test.mosquitto.org"
-#define MQTT_BROKER "192.168.0.112"
+#define MQTT_BROKER "tl4k-helios.local"
 #define MQTT_BROKER_PORT 1883
 #define MQTT_BROKER_USER ""
 #define MQTT_BROKER_PASSWORD ""

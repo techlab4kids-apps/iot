@@ -11,6 +11,9 @@
   #include <avr/power.h>
 #endif
 
+#define DISTANZA_MINIMA 5
+#define DISTANZA_SICUREZZA 15
+
 // Which pin on the Arduino is connected to the NeoPixels?
 // On a Trinket or Gemma we suggest changing this to 1
 #define PIN            D6

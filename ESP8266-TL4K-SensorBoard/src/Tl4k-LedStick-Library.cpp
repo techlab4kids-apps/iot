@@ -2,6 +2,7 @@
 #include "Tl4k-LedStick-Library.h"
 
 
+
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMPIXELS, D6, NEO_GRB + NEO_KHZ800);
 
 void impostaStrisciaLed(int valore){
@@ -22,15 +23,15 @@ void setStrisciaLed(int value){
 //  }
 
   for(int i = 0; i < NUMPIXELS; i++) {
-    if (value > 10) {
+    if (value > DISTANZA_SICUREZZA) {
       strip.setPixelColor(i, strip.Color(0, 255, 0)); // All LEDs green
-    } else if (value > 5 && value <= 10) {
+    } else if (value > DISTANZA_MINIMA && value <= DISTANZA_SICUREZZA) {
       if (i < NUMPIXELS / 2) {
         strip.setPixelColor(i, strip.Color(0, 255, 0)); // First half green
       } else {
         strip.setPixelColor(i, strip.Color(255, 255, 0)); // Second half yellow
       }
-    } else if (value <= 1) {
+    } else if (value <= DISTANZA_MINIMA) {
       strip.setPixelColor(i, strip.Color(255, 0, 0)); // All LEDs red
     }
 
