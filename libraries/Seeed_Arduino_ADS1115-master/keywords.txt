@@ -1,0 +1,29 @@
+  
+#######################################
+# Syntax Coloring Map For 
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+channel_t		KEYWORD1
+ADS1115		KEYWORD1
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin		KEYWORD2
+setOperateMode		KEYWORD2
+setOperateStaus		KEYWORD2
+setPGAGain		KEYWORD2
+setSampleRate	KEYWORD2
+setInputMux		KEYWORD2
+getConversionResults	KEYWORD2
+setCompaMode	KEYWORD2
+setCompaPolarity	KEYWORD2
+setCompaLatching	KEYWORD2
+setCompaQueue	KEYWORD2
+setLowThreshold		KEYWORD2
+setHighThreshold		KEYWORD2
+#######################################
+# Constants (LITERAL1)
+#######################################
