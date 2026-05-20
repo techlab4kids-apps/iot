@@ -1,22 +1,23 @@
 #ifndef _wifi_configuration_
 #define _wifi_configuration_
 
+#include <ESP8266WiFi.h>
 #include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager WiFi Configuration Magic
 
-// Nome della rete WiFi(SID)
-// #define WIFI_AP_NAME "TL4K-4G-NET"
-//#define WIFI_AP_NAME "procioniopossum"
-#define WIFI_AP_NAME "tl4k-net"
+// External secrets (optional - if secrets.h exists, it overrides defaults)
+#ifdef INCLUDE_SECRETS
+#include "secrets.h"
+#endif
 
-// WiFi password
-// #define WIFI_PASSWORD "12344321"
-#define WIFI_PASSWORD "techlab4kids"
-//#define WIFI_PASSWORD "tombolina"
+// WiFi Credentials
+// Priority: secrets.h > build flags > WiFiManager captive portal
+#ifndef WIFI_SSID
+  #define WIFI_SSID ""
+#endif
 
-// the Wifi radio's status
-// extern int status;
-
-// Initialize client
+#ifndef WIFI_PASSWORD
+  #define WIFI_PASSWORD ""
+#endif
 
 void impostaLaConnessioneWiFi();
 void initWiFi();

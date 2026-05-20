@@ -180,18 +180,24 @@ void knightRider(uint32_t color, int times, int wait, int barLength) {
       }
       for(int j=0; j<strip.numPixels(); j++) {
        strip.setPixelColor(j, off);         //  Set Bar Pixel 1 to 0 (in RAM)
-       strip.setPixelColor(j+barLength, color);         //  Set next Bar pixel to color (in RAM)
+       if (j + barLength < strip.numPixels()) {
+         strip.setPixelColor(j + barLength, color);         //  Set next Bar pixel to color (in RAM)
+       }
        strip.show();                          //  Update strip to match
        delay(wait);
       }
-      for(int k=strip.numPixels(); k>strip.numPixels()-barLength; k--) {
-       strip.setPixelColor(k, color);         //  Set pixel's color (in RAM)
+      for(int k=strip.numPixels() - 1; k >= (int)strip.numPixels() - barLength && k >= 0; k--) {
+       if (k < strip.numPixels()) {
+         strip.setPixelColor(k, color);         //  Set pixel's color (in RAM)
+       }
        strip.show();                          //  Update strip to match
        delay(wait);                           //  Pause for a moment
         }
-      for(int j=strip.numPixels(); j>0; j--) {
+      for(int j=strip.numPixels() - 1; j >= 0; j--) {
        strip.setPixelColor(j, off);         //  Set Bar Pixel 1 to 0 (in RAM)
-       strip.setPixelColor(j-barLength, color);         //  Set next Bar pixel to color (in RAM)
+       if (j - barLength >= 0) {
+         strip.setPixelColor(j - barLength, color);         //  Set next Bar pixel to color (in RAM)
+       }
        strip.show();                          //  Update strip to match
        delay(wait);
        }

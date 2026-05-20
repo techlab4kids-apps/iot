@@ -1,0 +1,30 @@
+# Certificati SSL e chiavi private — MAI committare
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+
+# Credenziali MQTT/WiFi
+secrets.h
+
+# PlatformIO build artifacts
+.pio/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+*.swp
+*.swo
+*~
+.idea/
+.codebuddy/
+
+# AI agent directories
+.ijfw/
+.wolf/
+.claude/
+.gemini/

@@ -3,3 +3,15 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+
+# Secrets - NEVER commit credentials
+src/secrets.h
+
+# Keep the example template tracked
+!src/secrets.h.example
+
+# Certificate files (raw) - the CA cert in code is tracked via Tl4k-MQTT-Certificate.h
+*.pem
+*.crt
+*.cer
+certificate-35.zip
